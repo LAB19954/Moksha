@@ -1,0 +1,237 @@
+/* The token contract, and the whole of this site's art direction: :root holds
+   the values, @theme inline turns them into utilities. One colour scheme,
+   deliberately — this site is dark, the way a pit garage at night is dark.
+   Colour is written in oklch() so lightness means what it looks like. */
+:root {
+  /* Pit-garage asphalt, workshop light, one mark green. The ground is a touch
+     deeper and bluer than a neutral so the green reads as a lamp in a dark
+     room rather than as a tint on grey. */
+  --background: oklch(0.145 0.014 265);
+  --foreground: oklch(0.97 0.006 250);
+  --card: oklch(0.205 0.017 265);
+  --card-foreground: oklch(0.97 0.006 250);
+  --popover: oklch(0.205 0.017 265);
+  --popover-foreground: oklch(0.97 0.006 250);
+
+  /* The accent is the primary action, the race number and the mark. Nothing
+     else. It is the green the club painted its own M in, taken light enough to
+     carry as ink on the asphalt ground (11:1); on the lit bench the same hue
+     goes dark, because the bright accent on paper is a 1.7:1 headline nobody
+     can read. */
+  --primary: oklch(0.82 0.185 163);
+  --primary-foreground: oklch(0.16 0.035 163);
+  --primary-ink: oklch(0.48 0.135 163);
+  /* The brand ground: a whole band painted in the club's own green, taken dark
+     and only half saturated so white ink clears 4.5:1 on it (9:1). This is
+     where the loudest thing on a page happens; it is used once per page. */
+  --brand-ground: oklch(0.32 0.09 163);
+  --brand-ground-foreground: oklch(0.98 0.01 163);
+
+  --secondary: oklch(0.245 0.018 265);
+  --secondary-foreground: oklch(0.97 0.006 250);
+  --muted: oklch(0.225 0.015 265);
+  /* Muted ink is read on the asphalt ground, on `--card` and on `--secondary`,
+     so it is set against the lightest of those, not against the background. */
+  --muted-foreground: oklch(0.87 0.014 255);
+  --accent: oklch(0.26 0.02 265);
+  --accent-foreground: oklch(0.98 0.006 250);
+  --destructive: oklch(0.62 0.19 27);
+
+  /* Hairlines carry meaning, so they clear 3:1 on the ground they sit on. */
+  --border: oklch(0.5 0.016 265);
+  --input: oklch(0.45 0.016 265);
+  --ring: oklch(0.82 0.185 163);
+
+  /* Ink for the light workshop sections: the same asphalt on paper. */
+  --workshop: oklch(0.955 0.003 90);
+  --workshop-raised: oklch(1 0 0);
+  --workshop-foreground: oklch(0.175 0.012 265);
+  /* Muted ink on paper, darkened so it clears 4.5:1 on both paper grounds. */
+  --workshop-muted: oklch(0.395 0.02 265);
+  --workshop-border: oklch(0.77 0.012 265);
+
+  --font-heading: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+
+  --radius: 0.375rem;
+  /* A pill radius is for controls. Panels take the same corner up to a bound,
+     so a reference that says 999px does not make every card a lozenge. */
+  --radius-panel: min(var(--radius), 1.25rem);
+  --shadow: 0 1px 2px oklch(0 0 0 / 0.4), 0 18px 44px oklch(0 0 0 / 0.35);
+
+  /* A condensed display face can run larger than a normal-width one. */
+  --hero-size: clamp(3rem, 8vw, 6.5rem);
+  --hero-mobile: clamp(2.5rem, 11vw, 4rem);
+  --heading-tracking: -0.01em;
+  --heading-line: 1.02;
+  --heading-weight: 600;
+  --body-size: 1rem;
+  --body-line: 1.65;
+
+  --content-width: 1220px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-space: 5rem;
+  --layout-gap: 2rem;
+  --motion-fast: 180ms;
+  --motion-slow: 420ms;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-ink: var(--primary-ink);
+  --color-brand-ground: var(--brand-ground);
+  --color-brand-ground-foreground: var(--brand-ground-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-workshop: var(--workshop);
+  --color-workshop-raised: var(--workshop-raised);
+  --color-workshop-raised: var(--workshop-raised);
+  --color-workshop-foreground: var(--workshop-foreground);
+  --color-workshop-muted: var(--workshop-muted);
+  --color-workshop-border: var(--workshop-border);
+
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+  --font-label: var(--font-label);
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+
+  /* shadcn's own mapping: rounded-md is the control, rounded-xl the panel. */
+  --radius-sm: max(0px, calc(var(--radius-panel) - 4px));
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius-panel);
+  --radius-xl: calc(var(--radius-panel) + 4px);
+
+  --shadow-raised: var(--shadow);
+  --spacing-gutter: var(--gutter);
+  --spacing-section: var(--section-space);
+  --spacing-layout: var(--layout-gap);
+  --spacing-container-content: var(--content-width);
+}
+
+/* A diagonal cut where the ground changes. Painted in `currentColor`, so the
+   section that uses it decides which of the two grounds it is cut from. */
+@utility cut-top {
+  clip-path: polygon(0 2.5rem, 100% 0, 100% 100%, 0 100%);
+}
+
+@utility cut-top-soft {
+  clip-path: polygon(0 1.5rem, 100% 0, 100% 100%, 0 100%);
+}
+
+/* A fine diagonal hatch laid over a flat ground, the way a workshop floor or a
+   pit wall is marked out. Painted in `currentColor` so the band decides which
+   of its inks the texture is cut from. */
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    currentColor 0 1px,
+    transparent 1px 9px
+  );
+}
+
+/* A racing stripe: two hard-edged diagonals, cut so a section can be entered at
+   speed rather than on a straight horizontal seam. */
+@utility stripe-slash {
+  background-image: repeating-linear-gradient(
+    115deg,
+    currentColor 0 6px,
+    transparent 6px 26px
+  );
+}
+
+/* Condensed and spaced, the way a race number sits on a panel: an ordering
+   label, never a heading. */
+@utility race-label {
+  font-family: var(--font-label);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  line-height: 1;
+}
+
+@utility race-number {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.78;
+  letter-spacing: -0.03em;
+}
+
+/* The page arriving. One gesture on the way in — the entry settles and the
+   bands beneath it slide up a hair — and nothing to stop afterwards. Under
+   `prefers-reduced-motion` the movement is removed, not the state: everything
+   lands where it was going to land. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.25rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility rise-in {
+  animation: rise-in var(--motion-slow) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* A glow that breathes behind the machine. Slow enough to read as light rather
+   than as movement, and cancelled outright when motion is reduced. */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@utility pulse-glow {
+  animation: pulse-glow 7s ease-in-out infinite;
+}
+
+/* The car itself, drifting a few pixels on the spot: the machine is alive on
+   the page rather than pinned to it. Animated transform only. */
+@keyframes idle-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -0.5rem, 0) rotate(-0.35deg);
+  }
+}
+
+@utility idle-drift {
+  animation: idle-drift 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in,
+  .pulse-glow,
+  .idle-drift {
+    animation: none;
+  }
+}

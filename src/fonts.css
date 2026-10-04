@@ -1,0 +1,8 @@
+/* The site's faces. Imported before Tailwind because CSS requires a remote
+   @import at the top of the bundled sheet. Changing a face means changing this
+   import and the --font-* values in theme.css together.
+
+   Two families, three weights. Barlow Condensed is the display and label face:
+   it is how a workshop stencil and a race number are drawn. Inter carries the
+   body copy, because the car and the season need explaining in sentences. */
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
